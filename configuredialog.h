@@ -1,0 +1,50 @@
+#ifndef CONFIGUREDIALOG_H
+#define CONFIGUREDIALOG_H
+
+#include "ui_configuredialog.h"
+#include "bdaqctrl.h"
+#include <QDebug>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QMessageBox>
+#include <QFileDialog>
+
+using namespace Automation::BDaq;
+
+struct ConfigureParameter 
+{
+	QString deviceName;
+	int channelCount;
+	int channelStart;
+	ValueRange valueRange;
+	int32 clockRatePerChan;
+	int32 sectionLength;
+	const wchar_t* profilePath;
+};
+
+class ConfigureDialog : public QDialog
+{
+	Q_OBJECT
+
+public:
+	ConfigureDialog(QDialog *parent = 0);
+	~ConfigureDialog();
+	void Initailization();
+	void CheckError(ErrorCode errorCode);
+	ConfigureParameter GetConfigureParameter(){return configure;}
+	void RefreshConfigureParameter();
+
+    int DEVICE_CONNECT=0;
+    int connnect_flag(){return DEVICE_CONNECT;}
+
+private:
+	Ui::ConfigureDialog ui;
+	ConfigureParameter configure;
+
+	private slots:
+		void DeviceChanged(int index);
+		void ButtonOKClicked();
+		void ButtonCancelClicked();
+		void ButtonBrowseClicked();
+};
+
+#endif // CONFIGUREDIALOG_H

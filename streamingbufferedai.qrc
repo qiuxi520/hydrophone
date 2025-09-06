@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/AI_StreamingBufferedAi">
+        <file>Resources/Background.png</file>
+        <file>Resources/close.png</file>
+        <file>Resources/open.png</file>
+        <file>Resources/bg2.jpg</file>
+    </qresource>
+</RCC>
